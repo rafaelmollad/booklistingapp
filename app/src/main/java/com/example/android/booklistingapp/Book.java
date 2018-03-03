@@ -8,12 +8,12 @@ import android.graphics.Bitmap;
 
 public class Book {
 
-    String mTitle;
-    String mPublishedDate;
-    String mDescription;
-    String mPageCount;
-    Bitmap mBookImage;
-    String mAuthors;
+    private String mTitle;
+    private String mPublishedDate;
+    private String mDescription;
+    private String mPageCount;
+    private Bitmap mBookImage;
+    private String mAuthors;
 
     public Book(String title, String publishedDate, String description, String pageCount, Bitmap bookImage, String authors) {
         mTitle = title;

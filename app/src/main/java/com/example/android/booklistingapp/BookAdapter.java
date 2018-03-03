@@ -56,9 +56,17 @@ public class BookAdapter extends ArrayAdapter<Book> {
             TextView bookPublishedDate = (TextView) listItemView.findViewById(R.id.book_published_date);
             bookPublishedDate.setText(currentBook.getBookPublishedDate());
 
+
             // Set book image
             ImageView bookImage = (ImageView) listItemView.findViewById(R.id.book_thumbnail);
-            bookImage.setImageBitmap(currentBook.getBookThumbnail());
+
+            // If no image was provided in the JSON response
+            // Use an "Image not available" image
+            if (currentBook.getBookThumbnail() != null) {
+                bookImage.setImageBitmap(currentBook.getBookThumbnail());
+            } else {
+                bookImage.setImageResource(R.drawable.image_not_available);
+            }
 
             return listItemView;
         }
