@@ -86,6 +86,11 @@ public class ResultsActivity extends AppCompatActivity implements LoaderManager.
 
     @Override
     public void onLoadFinished(Loader<List<Book>> loader, List<Book> books) {
+
+
+        View loadingIndicator = findViewById(R.id.loading_indicator);
+        loadingIndicator.setVisibility(View.GONE);
+
         if (mAdapter != null) {
             mAdapter.clear();
         }
