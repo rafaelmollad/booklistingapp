@@ -1,10 +1,12 @@
 package com.example.android.booklistingapp;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -53,6 +55,10 @@ public class BookAdapter extends ArrayAdapter<Book> {
             // Set book published date
             TextView bookPublishedDate = (TextView) listItemView.findViewById(R.id.book_published_date);
             bookPublishedDate.setText(currentBook.getBookPublishedDate());
+
+            // Set book image
+            ImageView bookImage = (ImageView) listItemView.findViewById(R.id.book_thumbnail);
+            bookImage.setImageBitmap(currentBook.getBookThumbnail());
 
             return listItemView;
         }

@@ -1,5 +1,7 @@
 package com.example.android.booklistingapp;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by Rafael on 17/2/2018.
  */
@@ -10,15 +12,15 @@ public class Book {
     String mPublishedDate;
     String mDescription;
     String mPageCount;
-    String mThumbnail;
+    Bitmap mBookImage;
     String mAuthors;
 
-    public Book(String title, String publishedDate, String description, String pageCount, String thumbnail, String authors) {
+    public Book(String title, String publishedDate, String description, String pageCount, Bitmap bookImage, String authors) {
         mTitle = title;
         mPublishedDate = publishedDate;
         mDescription = description;
         mPageCount = pageCount;
-        mThumbnail = thumbnail;
+        mBookImage = bookImage;
         mAuthors = authors;
     }
 
@@ -53,8 +55,8 @@ public class Book {
     /**
      * @return Book thumbnail
      */
-    public String getBookThumbnail() {
-        return mThumbnail;
+    public Bitmap getBookThumbnail() {
+        return mBookImage;
     }
 
     /**

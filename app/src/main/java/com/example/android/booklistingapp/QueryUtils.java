@@ -1,6 +1,9 @@
 package com.example.android.booklistingapp;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.renderscript.ScriptGroup;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -130,6 +133,35 @@ public class QueryUtils {
     }
 
     /**
+     *
+     * @param imageUrl String in the JSON response
+     * @return the image (bitmap)
+     */
+    private static Bitmap getBookImage(String imageUrl) {
+        URL url = createUrl(imageUrl);
+        Bitmap bitmap = null;
+        InputStream ins = null;
+
+        try {
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+            httpURLConnection.setRequestMethod("GET");
+            httpURLConnection.setReadTimeout(10000);
+            httpURLConnection.setConnectTimeout(15000);
+            httpURLConnection.connect();
+
+            if (httpURLConnection.getResponseCode() == 200) {
+                ins = httpURLConnection.getInputStream();
+                bitmap = BitmapFactory.decodeStream(ins);
+            }
+        } catch (IOException e) {
+                Log.e(LOG_TAG, "An error occured while getting book image", e);
+            }
+
+            return bitmap;
+        }
+
+
+    /**
      * Return a list of {@link Book} objects that has been built up from
      * parsing the given JSON response.
      */
@@ -186,9 +218,12 @@ public class QueryUtils {
                 // Initialize thumbnail so that if there's no thumbnail
                 // in the JSON response, we can add an empty string to the Book object
                 String thumbnail = "";
+                Bitmap bookImage = null;
                 // Get image thumbnail
                 if (imageLinks != null) {
                     thumbnail = imageLinks.getString("thumbnail");
+                    bookImage = getBookImage(thumbnail);
+
                 }
 
                 // This empty string will be added to the object is the authors array is null
@@ -229,7 +264,7 @@ public class QueryUtils {
                 }
 
                 // Create a new Book object using the constructor
-                Book book = new Book(bookTitle, publishedDate, bookDescription, pageCount, thumbnail, authorsString);
+                Book book = new Book(bookTitle, publishedDate, bookDescription, pageCount, bookImage, authorsString);
 
                 // Add book to List of books
                 books.add(book);
