@@ -5,4 +5,13 @@
     <string name="placeholder_text">Search book</string>
     <!-- Search button text -->
     <string name="search_button_text">Search</string>
+    <!-- Settings Menu Item -->
+    <string name="settings_menu_item">Settings</string>
+    <!-- Settings Activity Title -->
+    <string name="settings_title">Book Settings</string>
+    <!-- Numbers of books shown by the app -->
+    <string name="settings_books_shown_label">Number of books shown</string>
+    <string name="settings_books_shown_key">books_shown</string>
+    <string name="settings_books_shown_default">10</string>
+
 </resources>

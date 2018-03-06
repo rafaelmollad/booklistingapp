@@ -4,14 +4,17 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String BASE_URL = "https://www.googleapis.com/books/v1/volumes?maxResults=10";
+    private static final String BASE_URL = "https://www.googleapis.com/books/v1/volumes?";
     private String mFinalUrl;
 
     @Override
@@ -34,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                 // Store keyword typed by the user, i.e, Harry Potter
                 String keyword = searchBar.getText().toString();
 
-                mFinalUrl = getFinalUrl(keyword);
+                mFinalUrl = addKeywordToUrl(keyword);
 
                 // Create intent to open ResultsActivity.java and show searching results
                 Intent openResultsActivity = new Intent(MainActivity.this, ResultsActivity.class);
@@ -55,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
      * @param keyword is the word that the user entered in the search  box
      * @return the formatted string
      */
-    private String getFinalUrl(String keyword) {
+    private String addKeywordToUrl(String keyword) {
         // Create a URI object
         Uri baseUri = Uri.parse(BASE_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
@@ -67,4 +70,25 @@ public class MainActivity extends AppCompatActivity {
         return uriBuilder.toString();
 
     }
+
+
+    // Inflate the menu and respond when our users click on the menu item
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 }
