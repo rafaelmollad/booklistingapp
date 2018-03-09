@@ -5,8 +5,18 @@
 
     <ListView
         android:id="@+id/list"
+        android:dividerHeight="1dp"
+        android:divider="#FFFFFF"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></ListView>
+
+    <!-- Empty view is only visible when the list has no items. -->
+    <TextView
+        android:id="@+id/empty_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textAppearance="?android:textAppearanceMedium"/>
 
     <ProgressBar
         android:layout_width="wrap_content"

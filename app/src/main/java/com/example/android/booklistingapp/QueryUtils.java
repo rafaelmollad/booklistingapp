@@ -226,7 +226,7 @@ public class QueryUtils {
 
                 }
 
-                // This empty string will be added to the object is the authors array is null
+                // This empty string will be added to the object if the authors array is null
                 String authorsString = "";
 
                 // Get array containing all the authors.
